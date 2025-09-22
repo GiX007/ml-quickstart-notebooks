@@ -42,8 +42,8 @@ This guide focuses on the **modeling** part. It assumes that data has already be
 2. [Data](#2-data--what-data-do-we-have) — What data do we have? Is it structured (tables) or unstructured (text, images)? Static or streaming? How does it match the problem we want to solve?  
 3. [Evaluation](#3-evaluation--what-counts-as-success) — How do we measure success? For example, is a model that’s 95% accurate “good enough”?  
 4. [Features](#4-features--what-information-in-your-data-can-the-model-use) — Which parts of the data will we use? What can we add to help the model learn better?  
-5. **Modeling** — Which model should be used? How can it be trained, tested, and compared to others?  
-6. **Experimentation** — What else can we try? Does the model behave as expected in practice? How do the results change if we tweak the process?  
+5. [Modelling](#5-modelling--choosing-improving-and-comparing-models) — Which model should be used? How can it be trained, tested, and compared to others?  
+6. [Experimentation](#6-experimentation--what-else-could-we-try-how-do-the-other-steps-change-based-on-what-weve-found-does-our-deployed-model-do-as-we-expected) — What else can we try? Does the model behave as expected in practice? How do the results change if we tweak the process?  
 
 Let’s take a closer look at each step.
 
@@ -240,3 +240,120 @@ Almost anything—text, images, audio—can be turned into features, but eventua
 ---
 
 In short, **features are the signals in your data**. They don’t have to be exact or perfect, but the quality of your features often determines how well your model can perform.
+
+## 5. Modelling — Choosing, improving, and comparing models
+
+Once you’ve defined the problem, prepared your data, set evaluation metrics, and picked features, it’s time to build a model.  
+This step has three parts:  
+1. Choosing a model  
+2. Tuning and improving it  
+3. Comparing it with others  
+
+---
+
+### Choosing a model
+
+When picking a model, consider:  
+
+- **Ease of understanding and debugging** — Can we explain why it made a decision? How easy is it to fix errors?  
+- **Amount of data** — How much data do we have now? Will we get more later?  
+- **Limits on training and prediction** — How much time and computing power do we have?  
+
+A fancy state-of-the-art model might look attractive, but if it takes 10x more resources for only a tiny improvement, it may not be worth it.  
+
+Simple models like **logistic regression** are fast, easy to interpret, and often a good starting point. But real-world data isn’t always simple or linear.  
+
+For structured data (like spreadsheets or databases), tree-based models usually perform well. Examples include **random forests**, **XGBoost**, and **CatBoost**.  
+
+For unstructured data (like text, images, or audio), deep learning (neural networks) works better. These models are more powerful but also slower, harder to debug, and more resource-hungry.  
+
+Another option is **transfer learning**, where you start with a pre-trained model and adapt it to your problem. This saves a lot of time and resources.  
+
+Pre-trained models can be found on [PyTorch Hub](https://pytorch.org/hub/), [TensorFlow Hub](https://www.tensorflow.org/hub), [fast.ai](https://www.fast.ai/), or in model zoos.  
+
+---
+
+![](https://github.com/GiX007/ml-quickstart-notebooks/blob/main/data/images/ml_tools.png)
+
+### Tuning and improving a model
+
+The first version of a model is rarely the best. Like tuning a car, you can adjust settings (called **hyperparameters**) to make it better.  
+
+Examples of hyperparameters:  
+- Learning rate or optimizer type  
+- Number of trees in a random forest  
+- Number of layers in a neural network  
+
+Many of these settings used to be adjusted by hand, but modern tools can automate the process. Transfer learning also helps, since much of the tuning has already been done on the pre-trained model.  
+
+When tuning, focus on **reproducibility and efficiency**. Others should be able to repeat your process, and you should aim to save time, since training is usually the slowest step.  
+
+---
+
+### Comparing models
+
+Always compare fairly (“apples to apples”):  
+
+- If Model 1 is trained on Data X and tested on Data Y,  
+- Then Model 2 should also be trained on Data X and tested on Data Y.  
+
+This way, differences come from the models themselves, not from the data.
+
+## 6. Experimentation — What else could we try? How do the other steps change based on what we’ve found? Does our deployed model do as we expected?
+
+Experimentation ties together all the earlier steps. Machine learning is an **iterative process**, so the goal is to test ideas quickly and act on the results.  
+
+A key aim is to reduce the gap between **offline experiments** (before deployment) and **online experiments** (when the model is live).  
+
+When experimenting, always split your data:  
+- **Training set** — 70–80% of data, used to train the model.  
+- **Validation set** — 10–15% of data, used to tune and adjust the model.  
+- **Test set** — 10–15% of data, used to check final performance.  
+
+The exact split may vary depending on the problem and dataset size.  
+
+- If training performance is poor → the model hasn’t learned well. Try a different model, improve features, or gather more data.  
+- If test performance is poor → the model isn’t generalizing. It may be overfitting. Try a simpler model or collect more data.  
+- If live (deployed) performance is poor → the real-world data doesn’t match training data. Revisit earlier steps, especially problem definition and data preparation.  
+
+When making major experimental changes, **document everything** — what you changed and why. Future you (or your teammates) should be able to reproduce results.  
+
+This also means saving updated models and datasets as you go.  
+---
+
+## Putting it together in a proof of concept
+
+Many companies are curious about machine learning but don’t know how to begin. A good first step is to build a **proof of concept (PoC)**.  
+
+A PoC isn’t about changing your whole business. It’s about testing if machine learning can deliver value in a small, controlled setting.  
+
+The focus should be on **useful solutions**, not hype.  
+
+Set a clear timeline for the PoC — for example, 2, 6, or 12 weeks. With good data, an experienced practitioner can achieve 80–90% of the final expected results within that timeframe.  
+
+It’s important that **domain experts** and **data scientists** work together. A technically perfect model that solves the wrong problem is useless.  
+
+Also, contributions can come from outside the data team. For example, a web designer improving site layout may make it easier to run an ML experiment on customer behavior.  
+
+Be aware that some PoCs may fail. Machine learning won’t always be the right fit for every problem. If that happens, treat it as a learning opportunity rather than wasted effort. Knowing what doesn’t work helps you focus on what does.  
+
+Deadlines are helpful here — they push progress forward, even if the outcome is “this idea doesn’t work.”  
+
+If the PoC is successful, move forward. If not, step back and reconsider.  
+**Learning by doing is often faster and more valuable than just planning.**
+
+## Beyond the Basics
+
+Each of these steps could have an entire article of their own. But for now, here are a few important notes:
+
+**It’s always about the data.**  
+Without good data, no machine learning model will save you. Success always begins with collecting and preparing quality data.  
+
+**Deployment changes everything.**  
+A model that works well offline doesn’t always work in production. Deployment involves much more than just the model: infrastructure, monitoring, retraining, and data checks. Cloud providers offer tools for this, but connecting everything properly is still tricky. 
+
+**Data collection and deployment take the most time.**  
+This guide has focused on modelling, but in reality, preparing data and deploying models are the longest and hardest parts of a machine learning workflow.  
+
+**Tools keep changing.**  
+From libraries and frameworks to deployment platforms, there are many ways to do the same task. Best practices evolve quickly, so the safest approach is to focus on principles that don’t change.  
