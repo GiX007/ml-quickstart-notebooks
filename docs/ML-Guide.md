@@ -108,3 +108,4 @@ Notice the keyword: **classify**. This makes it a classification problem.
 
 It’s important to note that success isn’t guaranteed. Not every problem can be solved with machine learning. But the first step is always to restate the problem in simple, ML-friendly terms. Add details only when needed. 
 
+o
