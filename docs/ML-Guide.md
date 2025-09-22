@@ -122,4 +122,23 @@ Most data falls into two main types: **structured** and **unstructured**. Each o
 - **Streaming data** — Data that is constantly updated.  
   Example: live sensor readings, social media feeds, or insurance claim updates.  
 
-These
+![](https://github.com/GiX007/ml-quickstart-notebooks/blob/main/data/images/structured_unstructured_data.png)
+
+In machine learning, we usually split data into **feature variables** (inputs) and **target variables** (outputs).  
+
+- **Feature variables** are the inputs we use for prediction.  
+  Example: patient’s sex, blood pressure, heart rate.  
+- **Target variable** is what we want to predict.  
+  Example: whether the patient has heart disease.  
+
+The model learns patterns in the feature variables that best predict the target variable.  
+
+![]()
+
+Different learning approaches use data differently:  
+
+- **Supervised learning** — Data comes with labels (e.g., “disease” or “no disease”). The model learns how features connect to labels.  
+- **Unsupervised learning** — Data has no labels. The model groups similar examples together (clustering).  
+- **Transfer learning** — Patterns learned from one dataset are reused on another related task.  
+
+A quick note: If your business uses customer data to improve services (like recommendations), it’s important to be transparent with users. That’s why many websites show “this site uses cookies” popups — they’re letting users know their data helps personalize the experience.  
