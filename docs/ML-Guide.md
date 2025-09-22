@@ -37,7 +37,8 @@ This guide focuses on the **modeling** part. It assumes that data has already be
 
 ![](https://github.com/GiX007/ml-quickstart-notebooks/blob/main/data/images/ml_steps.png)
 
-1. [Problem definition](## 1. Problem Definition — Turn Your Business Problem Into a Machine Learning Problem) — What issue are we trying to solve? How can it be phrased as a machine learning task?  
+1. [Problem definition](#1-problem-definition--turn-your-business-problem-into-a-machine-learning-problem)
+ — What issue are we trying to solve? How can it be phrased as a machine learning task?  
 2. **Data** — What data do we have? Is it structured (tables) or unstructured (text, images)? Static or streaming? How does it match the problem we want to solve?  
 3. **Evaluation** — How do we measure success? For example, is a model that’s 95% accurate “good enough”?  
 4. **Features** — Which parts of the data will we use? What can we add to help the model learn better?  
