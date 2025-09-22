@@ -39,7 +39,7 @@ This guide focuses on the **modeling** part. It assumes that data has already be
 
 1. [Problem definition](#1-problem-definition--turn-your-business-problem-into-a-machine-learning-problem)
  — What issue are we trying to solve? How can it be phrased as a machine learning task?  
-2. **Data** — What data do we have? Is it structured (tables) or unstructured (text, images)? Static or streaming? How does it match the problem we want to solve?  
+2. [Data](#2-data--what-data-do-we-have) — What data do we have? Is it structured (tables) or unstructured (text, images)? Static or streaming? How does it match the problem we want to solve?  
 3. **Evaluation** — How do we measure success? For example, is a model that’s 95% accurate “good enough”?  
 4. **Features** — Which parts of the data will we use? What can we add to help the model learn better?  
 5. **Modeling** — Which model should be used? How can it be trained, tested, and compared to others?  
@@ -108,4 +108,18 @@ Notice the keyword: **classify**. This makes it a classification problem.
 
 It’s important to note that success isn’t guaranteed. Not every problem can be solved with machine learning. But the first step is always to restate the problem in simple, ML-friendly terms. Add details only when needed. 
 
-o
+## 2. Data — What data do we have?
+
+The data you have (or need to collect) depends on the problem you want to solve.  
+Most data falls into two main types: **structured** and **unstructured**. Each of these can also be **static** or **streaming**.  
+
+- **Structured data** — Data arranged in rows and columns, like an Excel sheet or a database.  
+  Example: patient medical records, customer transactions.  
+- **Unstructured data** — Data that doesn’t fit into rows and columns easily.  
+  Example: text, images, audio files, or videos.  
+- **Static data** — Historical data that doesn’t change.  
+  Example: past customer purchases.  
+- **Streaming data** — Data that is constantly updated.  
+  Example: live sensor readings, social media feeds, or insurance claim updates.  
+
+These
