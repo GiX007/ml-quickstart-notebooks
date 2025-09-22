@@ -40,8 +40,8 @@ This guide focuses on the **modeling** part. It assumes that data has already be
 1. [Problem definition](#1-problem-definition--turn-your-business-problem-into-a-machine-learning-problem)
  — What issue are we trying to solve? How can it be phrased as a machine learning task?  
 2. [Data](#2-data--what-data-do-we-have) — What data do we have? Is it structured (tables) or unstructured (text, images)? Static or streaming? How does it match the problem we want to solve?  
-3. **Evaluation** — How do we measure success? For example, is a model that’s 95% accurate “good enough”?  
-4. **Features** — Which parts of the data will we use? What can we add to help the model learn better?  
+3. [Evaluation](#3-evaluation--what-counts-as-success) — How do we measure success? For example, is a model that’s 95% accurate “good enough”?  
+4. [Features](#4-features--what-information-in-your-data-can-the-model-use) — Which parts of the data will we use? What can we add to help the model learn better?  
 5. **Modeling** — Which model should be used? How can it be trained, tested, and compared to others?  
 6. **Experimentation** — What else can we try? Does the model behave as expected in practice? How do the results change if we tweak the process?  
 
@@ -142,3 +142,101 @@ Different learning approaches use data differently:
 - **Transfer learning** — Patterns learned from one dataset are reused on another related task.  
 
 A quick note: If your business uses customer data to improve services (like recommendations), it’s important to be transparent with users. That’s why many websites show “this site uses cookies” popups — they’re letting users know their data helps personalize the experience.  
+
+##  3. Evaluation — What counts as success?
+
+Once the problem is defined and you have data, the next step is to decide what success looks like.  
+This means choosing the right **evaluation metrics**, which depend on the type of problem: classification, regression, or recommendation.  
+
+For example, in an insurance setting, success could mean:  
+
+> *The model must be at least 95% accurate when predicting whether someone is at fault or not.*  
+
+A 95% accurate model might sound good, but the right target depends on the problem. For medical cases like predicting heart disease, you’d want much higher accuracy.  
+
+---
+
+### Key terms for classification problems
+
+- **False negative** — The model says “negative” when the truth is “positive.”  
+  Example: the model misses a pedestrian in self-driving car detection.  
+- **False positive** — The model says “positive” when the truth is “negative.”  
+  Example: predicting heart disease for someone who doesn’t have it.  
+- **True negative** — Correctly predicting “negative.”  
+- **True positive** — Correctly predicting “positive.”  
+- **Precision** — Out of all positive predictions, how many were correct?  
+- **Recall** — Out of all actual positives, how many did the model catch?  
+- **F1 score** — Balance of precision and recall (closer to 1 is better).  
+- **ROC curve & AUC** — Shows the tradeoff between true positives and false positives. AUC = 1.0 means perfect, AUC = 0.5 means random guessing.  
+
+---
+
+### Metrics for regression problems
+
+Regression predicts numbers (like house prices). The goal is to reduce the gap between predicted and actual values.  
+
+- **MAE (Mean Absolute Error)** — Average size of errors.  
+- **RMSE (Root Mean Squared Error)** — Similar to MAE, but larger errors are punished more.  
+
+Example: If a house is predicted at \$300k but really sells for \$200k, RMSE considers this mistake much worse than predicting \$250k.  
+
+---
+
+### Metrics for recommendation problems
+
+Recommenders suggest items (like products or movies). Here, order matters.  
+
+One common metric:  
+
+- **Precision@k** — Measures accuracy for the top *k* recommendations (e.g., top 5).  
+  If only 5 suggestions are shown, it doesn’t matter if the 6th is correct.  
+
+To test recommenders, you can hide part of your historical data, train on the rest, and then see if the system correctly predicts the hidden examples.  
+
+---
+
+### Summary
+
+Different problems need different metrics:  
+- **Classification** → precision, recall, F1, AUC  
+- **Regression** → MAE, RMSE  
+- **Recommendation** → precision@k  
+
+At the start, you may not know which metric is perfect for your project. But picking one gives you a way to measure progress and judge if your model is “good enough.”
+
+## 4. Features — What information in your data can the model use?
+
+Not all data looks the same. In machine learning, the term **features** refers to the pieces of information inside the data that the model can use.  
+
+There are three main kinds of features:  
+
+- **Categorical features** — Options that fall into fixed groups.  
+  Example: patient’s sex (male/female), or whether someone made a purchase (yes/no).  
+
+- **Continuous (numerical) features** — Numbers that can vary.  
+  Example: a person’s average heart rate, or how many times a user logged into a website.  
+
+- **Derived features** — New features created from existing data (also called *feature engineering*).  
+  Example: turning login timestamps into “days since last login,” or turning dates into “weekday (yes/no).”  
+
+Almost anything—text, images, audio—can be turned into features, but eventually everything must be represented as numbers before being used by a machine learning model.  
+
+---
+
+### Things to keep in mind when working with features
+
+- **Keep them consistent** — Features used during training should look like the features available during real use.  
+- **Use expert knowledge** — Subject matter experts often know which features matter most. For example, doctors know which health indicators are important for disease prediction.  
+- **Focus on useful ones** — If a feature only appears in 10% of your data, it may not help much. Prefer features that are well-covered across your dataset.  
+- **Beware of “too good” results** — If your model performs perfectly, you may have *data leakage* (where the model is accidentally trained on information that gives away the answer). Real-world data is never perfect.  
+
+---
+
+### Examples
+
+- A churn prediction model might include a feature like “number of days since last login.” If customers who haven’t logged in for 3 weeks are 80% likely to cancel, that’s a useful feature.  
+- In real estate, a feature could be the number of bedrooms and bathrooms. Houses with 5+ bedrooms and 4+ bathrooms may reliably sell above \$500,000.  
+
+---
+
+In short, **features are the signals in your data**. They don’t have to be exact or perfect, but the quality of your features often determines how well your model can perform.
