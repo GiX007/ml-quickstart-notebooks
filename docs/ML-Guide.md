@@ -122,7 +122,7 @@ Most data falls into two main types: **structured** and **unstructured**. Each o
 - **Streaming data** — Data that is constantly updated.  
   Example: live sensor readings, social media feeds, or insurance claim updates.  
 
-![]()
+![](https://github.com/GiX007/ml-quickstart-notebooks/blob/main/data/images/str_unstr_data.png)
 
 In machine learning, we usually split data into **feature variables** (inputs) and **target variables** (outputs).  
 
