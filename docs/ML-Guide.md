@@ -133,7 +133,7 @@ In machine learning, we usually split data into **feature variables** (inputs) a
 
 The model learns patterns in the feature variables that best predict the target variable.  
 
-![]()
+![](https://github.com/GiX007/ml-quickstart-notebooks/blob/main/data/images/features_target_in_ml.png)
 
 Different learning approaches use data differently:  
 
