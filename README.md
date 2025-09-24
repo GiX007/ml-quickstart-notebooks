@@ -29,7 +29,7 @@ The notebooks are organized to gradually build from **Python basics** to **core 
 
 ---
 
-## What You’ll Learn
+## Topics Covered
 This collection provides a **complete introduction to the basics of machine learning**:
 - Python essentials for data science  
 - Core libraries: NumPy, pandas, Matplotlib, scikit-learn  
